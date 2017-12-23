@@ -64,6 +64,8 @@ public class DataTrainer {
 
         // Opens the file
         Scanner data = openFile( filepath );
+
+
     }
 
 
