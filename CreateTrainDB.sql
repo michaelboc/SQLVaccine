@@ -1,12 +1,14 @@
 /**
- * @author       Michael Boc <mikeboc@me.com>
- * @since        12/23/2017
+ * Author:      Michael Boc <mikeboc@me.com>
+ * Version:     Feb-21-2017
  *
  * This script builds the database that will store the training data.
 */
 
 
 DROP DATABASE IF EXISTS SQLTrain;
+Create DATABASE SQLTrain;
+USE SQLTrain;
 
 
 -- Database to hold the frequency of a found words in dangerous queries
@@ -15,13 +17,12 @@ CREATE TABLE wordcount(
     frequency   bigint unsigned
 );
 
+
 -- Procedure to update the word count table
 DELIMITER $$
-CREATE PROCEDURE updatefeq(IN word varchar(20))
+CREATE PROCEDURE updateFreq( IN word varchar(20) )
 BEGIN
     INSERT INTO wordcount values(word, 1)
         ON DUPLICATE KEY UPDATE frequency = frequency + 1;
 END $$
-
--- Prodecure to provide the probability of the provided word
-CREATE PROCEDURE findprob(IN word varchar(20), OUT prob()
+DELIMITER ;
